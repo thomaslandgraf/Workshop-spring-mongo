@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.mongodb.autoconfigure.MongoAutoConfiguration;
 
-@SpringBootApplication // Deixe apenas assim, sem o (exclude = ...)
+@SpringBootApplication
 public class WorkshopmongoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(WorkshopmongoApplication.class, args);
