@@ -1,6 +1,7 @@
 package com.landgraf.workshopmongo.services;
 
 import com.landgraf.workshopmongo.domain.User;
+import com.landgraf.workshopmongo.dto.UserDTO;
 import com.landgraf.workshopmongo.repository.UserRepository;
 import com.landgraf.workshopmongo.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +23,13 @@ public class UserService {
     public User findById(String id) {
         Optional<User> obj = userRepository.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException("Object Not Found!"));
+    }
+
+    public User insert(User obj){
+        return userRepository.insert(obj);
+    }
+
+    public User fromDTO(UserDTO objDTO){
+        return new User(objDTO.getId(), objDTO.getName(), objDTO.getEmail());
     }
 }
