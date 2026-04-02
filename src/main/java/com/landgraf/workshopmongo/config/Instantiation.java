@@ -2,6 +2,7 @@ package com.landgraf.workshopmongo.config;
 
 import com.landgraf.workshopmongo.domain.Post;
 import com.landgraf.workshopmongo.domain.User;
+import com.landgraf.workshopmongo.dto.AuthorDTO;
 import com.landgraf.workshopmongo.repository.PostRepository;
 import com.landgraf.workshopmongo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,10 +35,11 @@ public class Instantiation  implements CommandLineRunner {
         User alex = new User(null, "Alex Green", "alex@gmail.com");
         User bob = new User(null, "Bob Grey", "bob@gmail.com");
 
-        Post post1 = new Post(null, sdf.parse("04/02/2026"), "Let's travel", "I'm going to NY tomorrow morning!", maria);
-        Post post2 = new Post(null, sdf.parse("04/02/2026"), "Good Morning", "Hope you guys have a great day today!", maria);
-
         userRepository.saveAll(Arrays.asList(maria, alex, bob));
+
+        Post post1 = new Post(null, sdf.parse("04/02/2026"), "Let's travel", "I'm going to NY tomorrow morning!", new AuthorDTO(maria));
+        Post post2 = new Post(null, sdf.parse("04/02/2026"), "Good Morning", "Hope you guys have a great day today!", new AuthorDTO(alex));
+        
         postRepository.saveAll(Arrays.asList(post1, post2));
 
     }
