@@ -1,5 +1,6 @@
 package com.landgraf.workshopmongo.resources;
 
+import com.landgraf.workshopmongo.domain.Post;
 import com.landgraf.workshopmongo.domain.User;
 import com.landgraf.workshopmongo.dto.UserDTO;
 import com.landgraf.workshopmongo.services.UserService;
@@ -53,5 +54,11 @@ public class UserResource {
         obj.setId(id);
         obj = userService.update(obj);
         return ResponseEntity.noContent().build();
+    }
+
+    @RequestMapping(value= "/{id}/posts", method = RequestMethod.GET)
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id){
+        User obj = userService.findById(id);
+        return ResponseEntity.ok().body(obj.getPosts());
     }
 }
