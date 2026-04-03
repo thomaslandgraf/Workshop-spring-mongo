@@ -1,7 +1,6 @@
 package com.landgraf.workshopmongo.services;
 
 import com.landgraf.workshopmongo.domain.Post;
-import com.landgraf.workshopmongo.domain.User;
 import com.landgraf.workshopmongo.repository.PostRepository;
 import com.landgraf.workshopmongo.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +21,6 @@ public class PostService {
     }
 
     public List<Post> findByTitle(String text){
-        return postRepository.findByTitleContainingIgnoreCase(text);
+        return postRepository.findByTitle(text);
     }
 }
