@@ -3,6 +3,7 @@ package com.landgraf.workshopmongo.config;
 import com.landgraf.workshopmongo.domain.Post;
 import com.landgraf.workshopmongo.domain.User;
 import com.landgraf.workshopmongo.dto.AuthorDTO;
+import com.landgraf.workshopmongo.dto.CommentDTO;
 import com.landgraf.workshopmongo.repository.PostRepository;
 import com.landgraf.workshopmongo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,15 @@ public class Instantiation  implements CommandLineRunner {
         Post post1 = new Post(null, sdf.parse("04/02/2026"), "Let's travel", "I'm going to NY tomorrow morning!", new AuthorDTO(maria));
         Post post2 = new Post(null, sdf.parse("04/02/2026"), "Good Morning", "Hope you guys have a great day today!", new AuthorDTO(alex));
 
+        CommentDTO comment1 = new CommentDTO("Have a nice trip", sdf.parse("04/02/2026"), new AuthorDTO(alex));
+        CommentDTO comment2 = new CommentDTO("Have fun!", sdf.parse("04/01/2026"), new AuthorDTO(maria));
+        CommentDTO comment3 = new CommentDTO("Have a great and nice travels", sdf.parse("04/02/2026"), new AuthorDTO(bob));
+
+        post1.getComments().addAll(Arrays.asList(comment1, comment2));
+        post2.getComments().addAll(Arrays.asList(comment3));
+        
         postRepository.saveAll(Arrays.asList(post1, post2));
+
 
         maria.getPosts().addAll(Arrays.asList(post1, post2));
         userRepository.save(maria);
